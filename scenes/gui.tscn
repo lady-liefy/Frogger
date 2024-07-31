@@ -1,0 +1,135 @@
+[gd_scene load_steps=2 format=3 uid="uid://7fov7i38bxxu"]
+
+[ext_resource type="Script" path="res://scripts/gui.gd" id="1_82ywl"]
+
+[node name="GUI" type="Node" node_paths=PackedStringArray("score_counter", "lives_counter")]
+process_mode = 3
+script = ExtResource("1_82ywl")
+score_counter = NodePath("CanvasLayer/MarginContainer/Score/Amount")
+lives_counter = NodePath("CanvasLayer/MarginContainer/Lives/Amount")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 704.0
+offset_bottom = 641.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="Lives" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Lives"]
+layout_mode = 2
+text = "Lives
+"
+
+[node name="Amount" type="Label" parent="CanvasLayer/MarginContainer/Lives"]
+layout_mode = 2
+
+[node name="Timer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Amount" type="Label" parent="CanvasLayer/MarginContainer/Timer"]
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Score"]
+layout_mode = 2
+text = "Score:"
+
+[node name="Amount" type="Label" parent="CanvasLayer/MarginContainer/Score"]
+layout_mode = 2
+text = "0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 2
+
+[node name="TimeUp" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/TimeUp"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Time's Up!"
+
+[node name="LevelWon" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/LevelWon"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Level Complete!"
+
+[node name="Amount" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/LevelWon"]
+layout_mode = 2
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="ButtonPlayAgain" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../ButtonExit")
+text = "Play Again"
+
+[node name="ButtonNextLevel" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../ButtonExit")
+text = "Next Level"
+
+[node name="ButtonResume" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../ButtonExit")
+text = "Resume"
+
+[node name="ButtonExit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../ButtonQuitGame")
+text = "Menu"
+
+[node name="ButtonQuitGame" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../ButtonExit")
+text = "Quit Game"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ButtonPlayAgain" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ButtonNextLevel" to="." method="_on_button_next_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ButtonQuitGame" to="." method="_on_button_quit_game_pressed"]

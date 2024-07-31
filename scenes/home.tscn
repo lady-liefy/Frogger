@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqdp4hu7ejw5k"]
+
+[ext_resource type="Script" path="res://scripts/home.gd" id="1_sgf2x"]
+[ext_resource type="Texture2D" uid="uid://cb0su7g7i3yll" path="res://assets/art/frog1.png" id="2_ia3qw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvwos"]
+size = Vector2(34, 49)
+
+[node name="Home" type="Area2D"]
+z_index = 5
+z_as_relative = false
+collision_layer = 0
+script = ExtResource("1_sgf2x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-32, 95.5)
+shape = SubResource("RectangleShape2D_hvwos")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-32, 95)
+rotation = 3.14159
+scale = Vector2(3, 3)
+texture = ExtResource("2_ia3qw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

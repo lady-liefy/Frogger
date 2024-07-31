@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dthddglqupib"]
+
+[ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_wd6q5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ph4i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uuc1m"]
+size = Vector2(64, 64)
+
+[node name="Obstacle" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_wd6q5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ph4i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uuc1m")

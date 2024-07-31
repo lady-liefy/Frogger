@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bey7l73yf8o0t"]
+
+[ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_k81h7"]
+[ext_resource type="Texture2D" uid="uid://fcn8oshi0k1s" path="res://assets/art/City_Sprites.png" id="2_xot7i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1g53"]
+atlas = ExtResource("2_xot7i")
+region = Rect2(1984, 1280, 192, 128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y41fk"]
+radius = 32.0
+height = 146.0
+
+[node name="Car" type="CharacterBody2D" groups=["car"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_k81h7")
+vel = Vector2(-1, 0)
+speed = 0.8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = SubResource("AtlasTexture_f1g53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y41fk")

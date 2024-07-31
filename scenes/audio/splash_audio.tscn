@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkhntnhfss7xw"]
+
+[ext_resource type="Script" path="res://scenes/audio/splash_audio.gd" id="1_gj87v"]
+[ext_resource type="AudioStream" uid="uid://8felqaqdg4vj" path="res://assets/audio/wet_splat.wav" id="2_61m5f"]
+[ext_resource type="Texture2D" uid="uid://xxdcmrwhggkf" path="res://assets/art/pixel.png" id="2_xt0fb"]
+[ext_resource type="Texture2D" uid="uid://iwduygnu3sg6" path="res://assets/art/ring.png" id="3_n63qk"]
+
+[sub_resource type="Gradient" id="Gradient_lbkqg"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(0.65, 0.97, 1, 1, 0.32, 0.63, 0.67, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ti0g"]
+gradient = SubResource("Gradient_lbkqg")
+
+[sub_resource type="Curve" id="Curve_74i3n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b51ah"]
+curve = SubResource("Curve_74i3n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vp1qa"]
+lifetime_randomness = 0.08
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+initial_velocity_min = 190.0
+initial_velocity_max = 220.0
+gravity = Vector3(0, 0, 0)
+damping_min = 100.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_b51ah")
+color_ramp = SubResource("GradientTexture1D_4ti0g")
+
+[node name="Splash" type="Node2D" groups=["Splat"]]
+z_index = -4
+z_as_relative = false
+script = ExtResource("1_gj87v")
+
+[node name="Splash" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_vp1qa")
+texture = ExtResource("2_xt0fb")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+
+[node name="Splash2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_vp1qa")
+texture = ExtResource("3_n63qk")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.86
+
+[node name="SplashAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_61m5f")
+volume_db = -1.0
+autoplay = true

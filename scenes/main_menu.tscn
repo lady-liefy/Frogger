@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6tsyn5tgut2g"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_cjkpm"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_7e8ic"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_f83b7"]
+events = [SubResource("InputEventAction_7e8ic")]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("game_title")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_cjkpm")
+game_title = NodePath("MarginContainer/VBoxContainer/Title")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 0
+offset_right = 707.0
+offset_bottom = 638.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="ButtonPlay" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonQuit")
+focus_neighbor_top = NodePath("../ButtonQuit")
+focus_neighbor_right = NodePath("../ButtonQuit")
+focus_neighbor_bottom = NodePath("../ButtonQuit")
+focus_next = NodePath("../ButtonQuit")
+focus_previous = NodePath("../ButtonQuit")
+text = "Start"
+
+[node name="ButtonQuit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonPlay")
+focus_neighbor_top = NodePath("../ButtonPlay")
+focus_neighbor_right = NodePath("../ButtonPlay")
+focus_neighbor_bottom = NodePath("../ButtonPlay")
+focus_next = NodePath("../ButtonPlay")
+focus_previous = NodePath("../ButtonPlay")
+shortcut = SubResource("Shortcut_f83b7")
+text = "Quit Game"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]

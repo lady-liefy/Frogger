@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://u7rto5uumcq"]
+
+[ext_resource type="Script" path="res://scripts/turtle.gd" id="1_3m4ee"]
+[ext_resource type="Texture2D" uid="uid://citxmin3oorqu" path="res://assets/art/turtle4.png" id="2_rejuf"]
+[ext_resource type="Texture2D" uid="uid://wc3y66xyp46k" path="res://assets/art/turtle2.png" id="3_gv0hl"]
+[ext_resource type="Texture2D" uid="uid://br0jx2o6q0t6" path="res://assets/art/turtle3.png" id="4_t37sg"]
+[ext_resource type="Texture2D" uid="uid://ctriroe6rv3ll" path="res://assets/art/turtle1.png" id="5_tbyeq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ph4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rejuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gv0hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t37sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tbyeq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pj66"]
+radius = 16.0
+height = 116.0
+
+[node name="Turtle_2" type="CharacterBody2D" groups=["turtle"]]
+z_index = 5
+z_as_relative = false
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_3m4ee")
+vel = Vector2(-1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["turtle"]]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_8ph4i")
+frame_progress = 0.64445
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." groups=["turtle"]]
+position = Vector2(68, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_8ph4i")
+frame_progress = 0.56896
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(36, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3pj66")
